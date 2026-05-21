@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState } from "react";
 import type { Movie } from "./types";
 
@@ -37,20 +38,22 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app">
       <h1>Movie Watch List</h1>
 
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Movie name"
-      />
+      <div className="top-form">
+        <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Movie name"
+        />
 
-      <button onClick={addMovie}>Add</button>
+        <button onClick={addMovie}>Add</button>
+      </div>
 
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>
+          <li className="movie-item" key={movie.id}>
             <input
               value={movie.title}
               onChange={(e) => changeMovieTitle(movie.id, e.target.value)}
