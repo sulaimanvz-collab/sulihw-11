@@ -17,6 +17,25 @@ const App = () => {
     setTitle("");
   };
 
+  const deleteMovie = (id: number) => {
+    setMovies((prev) => prev.filter((movie) => movie.id !== id));
+  };
+
+  const changeMovieTitle = (id: number, newTitle: string) => {
+    setMovies((prev) =>
+      prev.map((movie) => {
+        if (movie.id === id) {
+          return {
+            ...movie,
+            title: newTitle,
+          };
+        }
+
+        return movie;
+      }),
+    );
+  };
+
   return (
     <div>
       <h1>Movie Watch List</h1>
@@ -31,7 +50,14 @@ const App = () => {
 
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>
+            <input
+              value={movie.title}
+              onChange={(e) => changeMovieTitle(movie.id, e.target.value)}
+            />
+
+            <button onClick={() => deleteMovie(movie.id)}>X</button>
+          </li>
         ))}
       </ul>
     </div>
